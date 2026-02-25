@@ -9,14 +9,6 @@ how to do it?
 words (get the words you wanto to change, that words should be between -> "") (done)
 
 - with the words you want to change, fetch for them in the text
-get words:
-    catch each line of the text
-    split all words in a list
-    fetch for the words you want to change
-
-when found:
-
-
 
 - when you find the word to change, put another thing/word in that
 place
@@ -24,7 +16,19 @@ place
 - after all changes, create a new file and output that in the screen
 
 ##################################################################
-syntax of the command:  chwd  -flags  complete_paths_to_files  words_you_wanna_change
+syntax of the command:  chwd  -flags  complete_paths_to_files  words_to_change_to  words_you_wanna_change
+
+
+# Read all lines
+with open("file.txt", "r") as file:
+    lines = file.readlines()
+
+# Modify specific line (e.g., line 2, index 1)
+lines[1] = "New content here\n"
+
+# Write back to file
+with open("file.txt", "w") as file:
+    file.writelines(lines)
 
 
 """
@@ -35,9 +39,11 @@ import os
 
 sys.argv = sys.argv[1:] # taking off the program name
 list_flags = list() # creating the list that will have all the flags
-list_words_chg = list() # saving the words to change
 text_paths = list() # creating a list to save the path files
-list_words_txt = list() # list of words in each line of the text
+list_words_chng = list() # saving the words to change
+list_words_put = list() # list of words to substituite the ones already there
+lines = list() # for file lines
+words = list() # for words of each line
 
 
 for each in sys.argv: # catching the flags 
@@ -50,15 +56,18 @@ for text in sys.argv: # catching the files (in paths)
         text_paths.append(text)
 
 
-list_words_chg = sys.argv[-1].split() # catching the last sentence passed and spliting the words in the string passed
+list_words_chng = sys.argv[-1].split() # catching the last sentence passed and spliting the words in the string passed
+
+list_words_put = sys.argv[-2].split() # catching the almost last thing passed, the words to be there, in the place of words you don't want
 
 
-with open("/home/samuel/coding/testing/text.txt") as texto: # getting each line of the text and spliting it into words list
-    for lines in texto:
-        """ remove the \n from the text """
-        list_words_txt.append(lines.replace("\n", "").split(' '))
+with open("/home/samuel/coding/testing/text.txt", 'r') as texto: # getting each line of the text and spliting it into words list
+    lines = texto.readlines()
 
 
-for number, words in enumerate(list_words_txt): # testing
-    print("{} - {}".format(number, words))
-    if number == 6: break
+for index in range(len(lines)): # getting each word in the lines
+
+    words = lines[index].replace("\n", "").split(" ")
+
+    print("this is a list of all words", words)
+
