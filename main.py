@@ -6,14 +6,26 @@ how to do it?
 - get the words you want to change as a parameter (done)
 
 - get the new file with a text you want to change some specific
-words (get the words you wanto to change, that words should be between parentheses)
+words (get the words you wanto to change, that words should be between -> "") (done)
 
 - with the words you want to change, fetch for them in the text
+get words:
+    catch each line of the text
+    split all words in a list
+    fetch for the words you want to change
+
+when found:
+
+
 
 - when you find the word to change, put another thing/word in that
 place
 
 - after all changes, create a new file and output that in the screen
+
+##################################################################
+syntax of the command:  chwd  -flags  complete_paths_to_files  words_you_wanna_change
+
 
 """
 
@@ -35,12 +47,11 @@ for text in sys.argv: # catching the files (in paths)
     if os.path.isfile(text) == True:
         text_paths.append(text)
 
-""" catching the last thing that should be a list of words """
+
 list_words = sys.argv[-1].split() # catching the last sentence passed and spliting the words in the string passed
 
-print("list of words")
-print(list_words)
-print("text to change the words on it")
-print(text_paths)
-print("list of flags passed")
-print(list_flags)
+
+with open("/home/samuel/coding/testing/text.txt") as texto:
+    for lines in texto: # getting each line of the text
+        print(f"{lines}".replace('\n', ''))
+
