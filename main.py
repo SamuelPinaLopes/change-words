@@ -35,8 +35,10 @@ import os
 
 sys.argv = sys.argv[1:] # taking off the program name
 list_flags = list() # creating the list that will have all the flags
-list_words = list() # saving the words to change
+list_words_chg = list() # saving the words to change
 text_paths = list() # creating a list to save the path files
+list_words_txt = list() # list of words in each line of the text
+
 
 for each in sys.argv: # catching the flags 
     if '-' == each[0]:
@@ -48,10 +50,15 @@ for text in sys.argv: # catching the files (in paths)
         text_paths.append(text)
 
 
-list_words = sys.argv[-1].split() # catching the last sentence passed and spliting the words in the string passed
+list_words_chg = sys.argv[-1].split() # catching the last sentence passed and spliting the words in the string passed
 
 
-with open("/home/samuel/coding/testing/text.txt") as texto:
-    for lines in texto: # getting each line of the text
-        print(f"{lines}".replace('\n', ''))
+with open("/home/samuel/coding/testing/text.txt") as texto: # getting each line of the text and spliting it into words list
+    for lines in texto:
+        """ remove the \n from the text """
+        list_words_txt.append(lines.replace("\n", "").split(' '))
 
+
+for number, words in enumerate(list_words_txt): # testing
+    print("{} - {}".format(number, words))
+    if number == 6: break
