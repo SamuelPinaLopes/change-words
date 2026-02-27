@@ -40,8 +40,7 @@ import os
 sys.argv = sys.argv[1:] # taking off the program name
 list_flags = list() # creating the list that will have all the flags
 text_paths = list() # creating a list to save the path files
-list_words_chng = list() # saving the words to change
-list_words_put = list() # list of words to substituite the ones already there
+list_words_chng = list_words_put = "" # saving the words to change # list of words to substituite the ones already there
 lines = list() # for file lines
 words = list() # for words of each line
 
@@ -55,19 +54,19 @@ for text in sys.argv: # catching the files (in paths)
     if os.path.isfile(text) == True:
         text_paths.append(text)
 
-
-list_words_chng = sys.argv[-1].split() # catching the last sentence passed and spliting the words in the string passed
-
-list_words_put = sys.argv[-2].split() # catching the almost last thing passed, the words to be there, in the place of words you don't want
+list_words_put = sys.argv[-2] # catching the almost last thing passed, the words to be there, in the place of words you don't want
 
 
-with open("/home/samuel/coding/testing/text.txt", 'r') as texto: # getting each line of the text and spliting it into words list
+list_words_chng = sys.argv[-1] # catching the last sentence passed and spliting the words in the string passed
+
+with open("/home/samuel/coding/testing/text.txt", 'r') as texto:
     lines = texto.readlines()
 
+with open("/home/samuel/coding/testing/text.txt", 'w') as texto: # getting each line of the text and spliting it into words list
 
-for index in range(len(lines)): # getting each word in the lines
-
-    words = lines[index].replace("\n", "").split(" ")
-
-    print("this is a list of all words", words)
-
+    for index, each_line in enumerate(lines):
+        # in each line remove: \n
+        # in each line replace the word you don't want for the word you want
+        lines[index] = each_line.lower().replace( list_words_chng.lower(), list_words_put.lower() )
+    
+    texto.writelines(lines)
