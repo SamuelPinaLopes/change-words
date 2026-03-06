@@ -1,0 +1,46 @@
+how to do it?
+- get the flags to do specific things in the program (done)
+
+- get the words you want to change as a parameter (done)
+
+- get the new file with a text you want to change some specific
+words (get the words you wanto to change, that words should be between -> "") (done)
+
+- with the words you want to change, fetch for them in the text
+
+- when you find the word to change, put another thing/word in that
+place
+
+- after all changes, create a new file and output that in the screen
+
+##################################################################
+syntax of the command:  chwd  -flags  complete_paths_to_files  words_to_change_to  words_you_wanna_change
+
+
+# Read all lines
+with open("file.txt", "r") as file:
+    lines = file.readlines()
+
+# Modify specific line (e.g., line 2, index 1)
+lines[1] = "New content here\n"
+
+# Write back to file
+with open("file.txt", "w") as file:
+
+
+
+
+
+
+
+
+how to make the  flags work?
+- identify each flag (already done)
+
+- for each one, do specific thing
+
+what I want to do with flags: take the words that will be there all upper or lower, count how many times
+a word appear, how many sentence the file have, Captalize a specific word, and remove words only these for now.
+
+kind of flags I will have there: -u, -l, -c, -mnyw, -mnys, -r
+
