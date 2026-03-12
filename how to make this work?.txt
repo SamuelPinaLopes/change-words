@@ -14,7 +14,7 @@ place
 - after all changes, create a new file and output that in the screen
 
 ##################################################################
-syntax of the command:  chwd  -flags  complete_paths_to_files  words_to_change_to  words_you_wanna_change
+syntax of the command:  chwd  -flags  complete_paths_to_files  words_to_change_to  words_you_want
 
 
 # Read all lines

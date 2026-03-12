@@ -18,20 +18,26 @@ def change(word_here, word_there):
     with open("/home/samuel/coding/testing/text.txt", 'r') as texto:
         lines = texto.readlines()
 
+
     with open("/home/samuel/coding/testing/text.txt", 'w') as texto: # getting each line of the text and spliting it into words list
         for index, each_line in enumerate(lines):
             # in each line remove: \n
             # in each line replace the word you don't want for the word you want
-            lines[index] = each_line.lower().replace( word_here.lower(), word_there )
-            texto.writelines(lines)
+            if len(word_here) > 0 and len(word_there) > 0:
+                lines[index] = each_line.lower().replace( word_here.lower(), word_there )
+                    
+        texto = lines
+
 
 
 for each in sys.argv: # catching the flags 
     if '-' == each[0]:
         list_flags.append(each)
 
-list_words_put = sys.argv[-2] # catching the almost last thing passed, the words to be there, in the place of words you don't want
-list_words_chng = sys.argv[-1] # catching the last sentence passed and spliting the words in the string passed
+if '-' in sys.argv:
+    list_words_put = sys.argv[-2] # catching the almost last thing passed, the words to be there, in the place of words you don't want
+if '"' in sys.argv:
+    list_words_chng = sys.argv[-1] # catching the last sentence passed and spliting the words in the string passed
 
 # doing something for each type of flag
 if len(list_flags) > 0:
@@ -42,7 +48,6 @@ if len(list_flags) > 0:
             change(list_words_chng, list_words_put.lower())
         elif each_flag == '-c': # Capitalize the words that is going to be there
             change(list_words_chng, list_words_put.capitalize())
-        
-        
+                
 else:
     change(list_words_chng, list_words_put)
